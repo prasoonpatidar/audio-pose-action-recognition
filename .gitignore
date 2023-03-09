@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/cache/
+/otc_models/av_training_ensembles/
+/otc_models/model_ckpts/
+/otc_models/oakdlite_models/
+.idea/

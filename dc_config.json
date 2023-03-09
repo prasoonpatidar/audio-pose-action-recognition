@@ -1,0 +1,14 @@
+{
+  "name": "trail_runs",
+  "device_audio": "movo",
+  "device_video": "logitech",
+  "device_doppler": "awr1642",
+  "device_thermal": "flir",
+  "device_micarray": "respeaker",
+  "device_lidar2d": "rplidar",
+  "device_lidar3d": "cyglidar3d",
+  "duration_in_mins": 12000,
+  "cache_dir": "cache/",
+  "write_method": "file",
+  "experiment_dir":"/tmp/vax_data_collection/"
+}
