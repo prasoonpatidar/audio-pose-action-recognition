@@ -75,7 +75,6 @@ def aggregate_ts_scores(df_otc_out):
     df_out[1] = df_out[1]/df_out[1].sum()
     return df_out
 
-
 def add_text_to_image(
     image_rgb: np.ndarray,
     label: str,

@@ -24,9 +24,9 @@ xgboost
 scikit-image
 hdbscan
 keras==2.10.0
-mmcv-full==1.4.0
 soundfile==0.11.0
 tensorflow==2.10.0
 psutil
+flask
 
 # //conda install -c conda-forge python-sounddevice
