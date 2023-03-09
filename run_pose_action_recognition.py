@@ -1,8 +1,5 @@
 # !/usr/bin/env python3
 '''
-This is main file to run data collection from depthcam. It collect rgb, and depth information.
-Developer: Prasoon Patidar
-Created: 5th March, 2022
 '''
 import datetime
 

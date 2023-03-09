@@ -72,3 +72,4 @@ def aggregate_ts_scores(df_otc_out):
     df_out = pd.DataFrame(np.percentile(df_otc_out.values,50,axis=1), index=df_otc_out.index, columns=[1]).sort_values([1],ascending=False)
     df_out[1] = df_out[1]/df_out[1].sum()
     return df_out
+

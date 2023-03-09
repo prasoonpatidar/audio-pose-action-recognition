@@ -190,3 +190,29 @@ def pose_inference_v2(instance_pose_data, posec3d_model, posec3d_label_map, test
         pose_queue.put(str(round(inf_time,3)))
         return None
     return df_scores
+
+
+def pose_inference_server(keypoints, keypoints_score, posec3d_model, posec3d_label_map, orig_h=256, orig_w=456, short_side=480):
+    w, h = mmcv.rescale_size((orig_w, orig_h), (short_side, np.Inf))
+    num_frame = keypoints.shape[1]
+    fake_anno = dict(
+        frame_dir='',
+        label=-1,
+        img_shape=(h, w),
+        original_shape=(h, w),
+        start_index=0,
+        modality='Pose',
+        total_frames=num_frame)
+    fake_anno['keypoint'] = keypoints
+    fake_anno['keypoint_score'] = keypoints_score
+    start_time = time.time()
+    results = inference_recognizer(posec3d_model, fake_anno)
+    inf_time = time.time()-start_time
+    # del fake_anno, keypoint, keypoint_score
+    df_scores = pd.DataFrame([(posec3d_label_map[xr[0]], float(xr[1])) for xr in results], columns=['label', 0]).set_index(
+        'label')
+    pose_activity_name = df_scores[0].sort_values(ascending=False).round(2).iloc[:5].to_dict()
+    pose_activity_name = '\n'.join([f'{kv}-{pose_activity_name[kv]}' for kv in pose_activity_name])
+    # pose_queue.put(pose_activity_name)
+    pose_inf_time = f'{round(inf_time,1)}secs'
+    return pose_inf_time+'\n\n'+pose_activity_name
