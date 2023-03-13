@@ -1,1 +1,1 @@
-# SquatCounter
+# PoseEstimatorApp
